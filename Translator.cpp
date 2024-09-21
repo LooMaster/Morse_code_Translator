@@ -3,13 +3,16 @@
 #include<iostream>
 #include<vector>
 #include<string>
-#include<cstring>
+#include<cstring>//这个头文件提供了用于处理 C 风格字符串（即以空字符 '\0' 结尾的字符数组）的函数
 using namespace std;
-void input(vector<char>& ch);
-void inpup(vector<string>& ch);
-void inpus(string& str);
-void show1(vector<string>& arr);
-void show(vector<char>& arr);
+
+void insp(vector<char>& ch);    //输入 (空格)
+void insl(string& str);        //输入 (斜杠 /)
+void inpup(vector<string>& ch); //输入 (英语-->摩斯)
+
+
+void show(vector<char>& arr);   //输出 (空格)
+void showout(vector<string>& arr); //输出 (英语-->摩斯)
 
 int main()
 {
@@ -21,20 +24,20 @@ int main()
 	while (1)
 	{
 		cout << "*****************************************" <<endl;
-		cout << "对应功能: \n1、摩尔斯电码->英语(空格隔开)\n2、摩尔斯电码->英语( / 隔开)\n3、英语->莫尔斯电码：\n";
+		cout << "对应功能: \n1.摩斯电码-->英语(空格隔开)\n2.摩斯电码-->英语( / 隔开)\n3.英语-->摩斯电码：\n";
 		cout << "*****************************************" <<endl;
 		cout << "请输入对应功能数字:" << endl;
 		cin >> op;
 		system("pause");//按任意键继续，不消失
 		system("cls");//清屏，防止 主菜单连续出现
 		if (op == 1)
-			input(sp);
+			insp(sp);
 		else if (op == 2)
 		{
-			cout << "请输入您要转换的电码(每段用/隔开)" << endl;
+			cout << "请输入您要转换的电码(每段用/隔开,输入完成按回车)" << endl;
 			cin >> sl;
-			inpus(sl);  //调用输入函数（斜杠/ ）
-			cout << endl;
+			insl(sl);  //调用输入函数（斜杠/ ）
+			cout<< endl;
 		}
 		else if (op == 3)
 			inpup(cd);
@@ -51,9 +54,9 @@ int main()
 }
 
 
-void input(vector<char>& ch)   //输入函数（空格）
+void insp(vector<char>& ch)   //输入函数（空格）
 {
-	cout << "请输入摩尔斯电码(输入 “end”结束 ；每段电码请用空格隔开):\n";
+	cout << "请输入摩斯电码(每段电码请用空格隔开,输入“（空格）end”结束 ；):\n";
 	string str = "";
 	int bol = 0;
 	string strend = "end";
@@ -159,126 +162,7 @@ void input(vector<char>& ch)   //输入函数（空格）
 	}
 }
 
-void inpup(vector<string>& ch)  //输入函数 （英语-->摩斯）
-{
-	string temp;
-	cout << "请输入需要转换的内容(英语):\n";
-	cin >> temp;
-	char tem[sizeof(temp)];
-	memset(tem, '0', sizeof(tem));
-	strcpy_s(tem, temp.c_str());
-	for (int i = 0; i < temp.length(); i++)
-	{
-		if (tem[i] == 'a')
-			ch.push_back(".-");
-		else if (tem[i] == 'b')
-			ch.push_back("-...");
-		else if (tem[i] == 'c')
-			ch.push_back("-.-.");
-		else if (tem[i] == 'd')
-			ch.push_back("-..");
-		else if (tem[i] == 'e')
-			ch.push_back(".");
-		else if (tem[i] == 'f')
-			ch.push_back("..-.");
-		else if (tem[i] == 'g')
-			ch.push_back("--.");
-		else if (tem[i] == 'h')
-			ch.push_back("....");
-		else if (tem[i] == 'i')
-			ch.push_back("..");
-		else if (tem[i] == 'j')
-			ch.push_back(".---");
-		else if (tem[i] == 'k')
-			ch.push_back("-.-");
-		else if (tem[i] == 'l')
-			ch.push_back(".-..");
-		else if (tem[i] == 'm')
-			ch.push_back("--");
-		else if (tem[i] == 'n')
-			ch.push_back("-.");
-		else if (tem[i] == 'o')
-			ch.push_back("---");
-		else if (tem[i] == 'p')
-			ch.push_back(".--.");
-		else if (tem[i] == 'q')
-			ch.push_back("--.-");
-		else if (tem[i] == 'r')
-			ch.push_back(".-.");
-		else if (tem[i] == 's')
-			ch.push_back("...");
-		else if (tem[i] == 't')
-			ch.push_back("-");
-		else if (tem[i] == 'u')
-			ch.push_back("..-");
-		else if (tem[i] == 'v')
-			ch.push_back("...-");
-		else if (tem[i] == 'w')
-			ch.push_back(".--");
-		else if (tem[i] == 'x')
-			ch.push_back("-..-");
-		else if (tem[i] == 'y')
-			ch.push_back("-.--");
-		else if (tem[i] == 'z')
-			ch.push_back("--..");
-		else if (tem[i] == '1')
-			ch.push_back(".----");
-		else if (tem[i] == '2')
-			ch.push_back("..---");
-		else if (tem[i] == '3')
-			ch.push_back("...--");
-		else if (tem[i] == '4')
-			ch.push_back("....-");
-		else if (tem[i] == '5')
-			ch.push_back(".....");
-		else if (tem[i] == '6')
-			ch.push_back("-....");
-		else if (tem[i] == '7')
-			ch.push_back("--...");
-		else if (tem[i] == '8')
-			ch.push_back("---..");
-		else if (tem[i] == '9')
-			ch.push_back("----.");
-		else if (tem[i] == '0')
-			ch.push_back("-----");
-		else if (tem[i] == '?')
-			ch.push_back("..--..");
-		else if (tem[i] == '/')
-			ch.push_back("-..-.");
-		else if (tem[i] == '-')
-			ch.push_back("-....-");
-		else if (tem[i] == '.')
-			ch.push_back(".-.-.-");
-		else if (tem[i] == '(' || tem[i] == ')')
-			ch.push_back("-.--.-");
-		else
-			ch.push_back("  【该处字符无法转换】  ");
-	}
-	show1(ch);
-}
-
-void show1(vector<string>& arr)//“英语-->摩斯 的show显示函数”
-{
-	vector<string>::iterator it;
-	for (it = arr.begin(); it != arr.end(); it++)
-	{
-		cout << *it << '/';
-	}
-	cout << endl;
-}
-
-void show(vector<char>& arr)    //“空格 的show显示函数”
-{
-	if (arr.empty()) cout << "【请输入正确电码】\n";
-	vector<char>::iterator it;
-	for (it = arr.begin(); it < arr.end(); it++)  //空格容器中用迭代器遍历
-	{
-		cout << *it;            //智能指针对象
-	}
-	cout << endl;
-}
-
-void inpus(string& str)  //输入函数（ 斜杠/ ）
+void insl(string& str)  //输入函数（ 斜杠/ ）
 {
 	unsigned int s1 = 0, s2 = 0, index = 0;
 	char x = 0;
@@ -389,8 +273,133 @@ void inpus(string& str)  //输入函数（ 斜杠/ ）
 		}
 		else
 		{
-			cout << " 【此处电码有误！】  ";
+			cout << " 【此处电码有误！】  " << endl;
 		}
 		index++;
 	}
 }
+
+
+void inpup(vector<string>& ch)  //输入函数 （英语-->摩斯）
+{
+	string temp;
+	cout << "请输入需要转换的内容(英语，仅英文字母，不用空格隔开):\n";
+	cin >> temp;
+	char tem[sizeof(temp)];
+	memset(tem, '0', sizeof(tem));
+	strcpy_s(tem, temp.c_str());
+	for (int i = 0; i < temp.length(); i++)
+	{
+		if (tem[i] == 'a')
+			ch.push_back(".-");
+		else if (tem[i] == 'b')
+			ch.push_back("-...");
+		else if (tem[i] == 'c')
+			ch.push_back("-.-.");
+		else if (tem[i] == 'd')
+			ch.push_back("-..");
+		else if (tem[i] == 'e')
+			ch.push_back(".");
+		else if (tem[i] == 'f')
+			ch.push_back("..-.");
+		else if (tem[i] == 'g')
+			ch.push_back("--.");
+		else if (tem[i] == 'h')
+			ch.push_back("....");
+		else if (tem[i] == 'i')
+			ch.push_back("..");
+		else if (tem[i] == 'j')
+			ch.push_back(".---");
+		else if (tem[i] == 'k')
+			ch.push_back("-.-");
+		else if (tem[i] == 'l')
+			ch.push_back(".-..");
+		else if (tem[i] == 'm')
+			ch.push_back("--");
+		else if (tem[i] == 'n')
+			ch.push_back("-.");
+		else if (tem[i] == 'o')
+			ch.push_back("---");
+		else if (tem[i] == 'p')
+			ch.push_back(".--.");
+		else if (tem[i] == 'q')
+			ch.push_back("--.-");
+		else if (tem[i] == 'r')
+			ch.push_back(".-.");
+		else if (tem[i] == 's')
+			ch.push_back("...");
+		else if (tem[i] == 't')
+			ch.push_back("-");
+		else if (tem[i] == 'u')
+			ch.push_back("..-");
+		else if (tem[i] == 'v')
+			ch.push_back("...-");
+		else if (tem[i] == 'w')
+			ch.push_back(".--");
+		else if (tem[i] == 'x')
+			ch.push_back("-..-");
+		else if (tem[i] == 'y')
+			ch.push_back("-.--");
+		else if (tem[i] == 'z')
+			ch.push_back("--..");
+		else if (tem[i] == '1')
+			ch.push_back(".----");
+		else if (tem[i] == '2')
+			ch.push_back("..---");
+		else if (tem[i] == '3')
+			ch.push_back("...--");
+		else if (tem[i] == '4')
+			ch.push_back("....-");
+		else if (tem[i] == '5')
+			ch.push_back(".....");
+		else if (tem[i] == '6')
+			ch.push_back("-....");
+		else if (tem[i] == '7')
+			ch.push_back("--...");
+		else if (tem[i] == '8')
+			ch.push_back("---..");
+		else if (tem[i] == '9')
+			ch.push_back("----.");
+		else if (tem[i] == '0')
+			ch.push_back("-----");
+		else if (tem[i] == '?')
+			ch.push_back("..--..");
+		else if (tem[i] == '/')
+			ch.push_back("-..-.");
+		else if (tem[i] == '-')
+			ch.push_back("-....-");
+		else if (tem[i] == '.')
+			ch.push_back(".-.-.-");
+		else if (tem[i] == '(' || tem[i] == ')')
+			ch.push_back("-.--.-");
+		else
+			ch.push_back("  【该处字符无法转换】  ");
+	}
+	showout(ch);
+}
+
+
+
+void show(vector<char>& arr)    //“空格 的show显示函数”
+{
+	if (arr.empty()) cout << "【请输入正确电码】\n";
+	vector<char>::iterator it;
+	for (it = arr.begin(); it < arr.end(); it++)  //空格容器中用迭代器遍历
+	{
+		cout << *it;            //智能指针对象
+	}
+	cout << endl;
+}
+
+
+void showout(vector<string>& arr)//“英语-->摩斯 的show显示函数”
+{
+	vector<string>::iterator it;
+	for (it = arr.begin(); it != arr.end(); it++)
+	{
+		cout << *it << '/';
+	}
+	cout << endl;
+}
+
+
